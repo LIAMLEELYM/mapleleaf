@@ -1,0 +1,49 @@
+<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>賞楓自駕 8日行程攻略</title><style>
+:root{--r:#c0392b;--bg:#faf6f1;--ink:#2b2b2b}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,"Noto Sans TC",sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(135deg,#b03a2e,#e67e22);color:#fff;padding:36px 20px;text-align:center}
+header h1{margin:0 0 6px}nav{display:flex;gap:8px;overflow-x:auto;padding:12px;position:sticky;top:0;background:var(--bg);z-index:5;box-shadow:0 2px 6px #0001}
+nav button{border:1px solid var(--r);background:#fff;color:var(--r);border-radius:20px;padding:8px 14px;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--r);color:#fff}
+main{max-width:760px;margin:auto;padding:16px}
+.card{background:#fff;border-radius:14px;padding:18px;box-shadow:0 2px 10px #0001;margin-bottom:16px}
+.tl{border-left:3px solid var(--r);margin:12px 0 0 8px;padding-left:16px}
+.it{margin-bottom:16px;position:relative}.it:before{content:"";position:absolute;left:-23px;top:5px;width:11px;height:11px;border-radius:50%;background:var(--r)}
+.t{font-size:12px;color:var(--r);font-weight:700}a{font-size:12px;margin-left:8px}
+.bar{height:8px;background:#eee;border-radius:5px;overflow:hidden}.bar i{display:block;height:100%;background:var(--r);width:0}
+.tag{display:inline-block;background:#fdecea;color:var(--r);padding:2px 10px;border-radius:12px;font-size:13px;margin-right:6px}
+.hotel{background:#fff6ea;border-radius:10px;padding:10px 14px}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:6px;border-bottom:1px solid #eee;text-align:left}
+label{display:block;padding:4px 0}
+</style>
+<header><h1>🍁 賞楓自駕 8日行程</h1><div>仙台 → 山形 → 藏王 → 會津 → 松島 ・ 11/18–11/25</div></header>
+<nav id="nav"></nav><main>
+<div class="card"><b>進度</b><div class="bar"><i id="pb"></i></div><small id="pt"></small></div>
+<div id="day"></div>
+<div class="card"><h3>行程與住宿總覽</h3><table id="ov"><tr><th>日</th><th>日期</th><th>主題</th><th>住宿</th></tr></table></div>
+<div class="card"><h3>出發清單</h3><div id="ck"></div></div>
+<p style="text-align:center;color:#888;font-size:12px">Demo:景點時段為示意,酒店以你提供的行程為準。</p></main>
+<script>
+const H={a:["Dormy Inn 仙台分館天然溫泉","Dormy Inn Sendai Annex Natural Hot Spring"],b:["山形站前大和魯內酒店","Daiwa Roynet Hotel Yamagata-Ekimae"],c:["若松屋旅館","Wakamatsuya"],d:["露櫻酒店 會津若松店","Hotel Route Inn Aizuwakamatsu"],e:["Dormy Inn EXPRESS 仙台海濱溫泉","Dormy Inn Express Sendai Seaside Hot Springs"]};
+const D=[
+["D1","11/18","週三","抵達仙台・牛舌","a",[["15:00","抵達仙台機場,取車"],["傍晚","入住 Dormy Inn 仙台分館"],["晚上","市區行街,食牛舌"]]],
+["D2","11/19","週四","山形・銀杏與溫泉","b",[["白天","山形霞城公園(銀杏)"],["傍晚","銀山溫泉(看點燈)"]]],
+["D3","11/20","週五","藏王初雪","c",[["上午","藏王纜車(初雪)"],["下午","藏王狐狸村"]]],
+["D4","11/21","週六","會津・鶴之城紅葉","d",[["白天","會津若松城(鶴之城紅葉)"],["下午","御藥園"]]],
+["D5","11/22","週日","茅草屋與奇岩","d",[["上午","大內宿(茅草屋)"],["下午","塔之岪(奇岩吊橋)"]]],
+["D6","11/23","週一","紅葉地毯與購物","e",[["上午","土津神社(紅葉地毯)"],["下午","仙台港三井Outlet"],["晚上","入住 Dormy Inn Express 仙台海濱"]]],
+["D7","11/24","週二","松島・還車","e",[["上午","松島海岸(圓通院)"],["14:30前","市區還車"],["之後","商場購物"]]],
+["D8","11/25","週三","海鮮丼・回程","",[["早上","仙台朝市(海鮮丼)"],["上午","AER展望台"],["12:30","抵達機場"]]]];
+const q=s=>"https://www.google.com/maps/search/"+encodeURIComponent(s.replace(/\(.*\)/,''));
+const nav=document.getElementById('nav'),box=document.getElementById('day');
+D.forEach((d,i)=>{const b=document.createElement('button');b.textContent=d[0]+' '+d[1];b.onclick=()=>show(i);nav.appendChild(b);
+document.getElementById('ov').insertAdjacentHTML('beforeend',`<tr><td>${d[0]}</td><td>${d[1]}</td><td>${d[3]}</td><td>${d[4]?H[d[4]][0]:'— 回程'}</td></tr>`)});
+function show(i){[...nav.children].forEach((b,j)=>b.classList.toggle('on',j==i));const d=D[i],h=H[d[4]];
+box.innerHTML=`<div class="card"><span class="tag">${d[0]}</span><span class="tag">${d[1]} ${d[2]}</span><h2>${d[3]}</h2>
+<div class="tl">${d[5].map(x=>`<div class="it"><div class="t">${x[0]}</div>${x[1]}<a target="_blank" href="${q(x[1])}">📍地圖</a></div>`).join('')}</div>
+${h?`<div class="hotel">🏨 <b>${h[0]}</b><br><small>${h[1]}</small><a target="_blank" href="${q(h[1])}">📍地圖</a>${(i>0&&D[i-1][4]==d[4])?'<br><small>連住,無需換酒店</small>':''}</div>`:'<div class="hotel">🛫 今日回程,無住宿</div>'}</div>`;
+pb.style.width=(i+1)/D.length*100+'%';pt.textContent=`第 ${i+1} / ${D.length} 天`}
+const items=['護照/簽證','國際駕照 + 日文翻譯本','租車確認單','雪胎確認(藏王初雪)','保暖衣物','行動網絡/eSIM'];
+ck.innerHTML=items.map((t,i)=>`<label><input type=checkbox ${localStorage['c'+i]?'checked':''} onchange="localStorage['c'+${i}]=this.checked?1:''"> ${t}</label>`).join('');
+show(0);</script></html>
