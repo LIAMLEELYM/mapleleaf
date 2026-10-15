@@ -23,7 +23,7 @@ label{display:block;padding:4px 0}
 <div id="day"></div>
 <div class="card"><h3>行程與住宿總覽</h3><table id="ov"><tr><th>日</th><th>日期</th><th>主題</th><th>住宿</th></tr></table></div>
 <div class="card"><h3>出發清單</h3><div id="ck"></div></div>
-<p style="text-align:center;color:#888;font-size:12px">Demo:景點時段為示意,酒店以你提供的行程為準。</p></main>
+<p style="text-align:center;color:#888;font-size:12px">景點,酒店行程：</p></main>
 <script>
 const H={a:["Dormy Inn 仙台分館天然溫泉","Dormy Inn Sendai Annex Natural Hot Spring"],b:["山形站前大和魯內酒店","Daiwa Roynet Hotel Yamagata-Ekimae"],c:["若松屋旅館","Wakamatsuya"],d:["露櫻酒店 會津若松店","Hotel Route Inn Aizuwakamatsu"],e:["Dormy Inn EXPRESS 仙台海濱溫泉","Dormy Inn Express Sendai Seaside Hot Springs"]};
 const D=[
@@ -44,6 +44,6 @@ box.innerHTML=`<div class="card"><span class="tag">${d[0]}</span><span class="ta
 <div class="tl">${d[5].map(x=>`<div class="it"><div class="t">${x[0]}</div>${x[1]}<a target="_blank" href="${q(x[1])}">📍地圖</a></div>`).join('')}</div>
 ${h?`<div class="hotel">🏨 <b>${h[0]}</b><br><small>${h[1]}</small><a target="_blank" href="${q(h[1])}">📍地圖</a>${(i>0&&D[i-1][4]==d[4])?'<br><small>連住,無需換酒店</small>':''}</div>`:'<div class="hotel">🛫 今日回程,無住宿</div>'}</div>`;
 pb.style.width=(i+1)/D.length*100+'%';pt.textContent=`第 ${i+1} / ${D.length} 天`}
-const items=['護照/簽證','國際駕照 + 日文翻譯本','租車確認單','雪胎確認(藏王初雪)','保暖衣物','行動網絡/eSIM'];
+const items=['香港護照','國際駕照 + 適量日元現金','租車確認單','喂好豆豆同花生','保暖衣物','行動網絡/eSIM'];
 ck.innerHTML=items.map((t,i)=>`<label><input type=checkbox ${localStorage['c'+i]?'checked':''} onchange="localStorage['c'+${i}]=this.checked?1:''"> ${t}</label>`).join('');
 show(0);</script></html>
